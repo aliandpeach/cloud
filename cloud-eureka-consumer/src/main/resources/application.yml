@@ -1,5 +1,5 @@
 server:
-  port: 21113
+  port: 42911
   #注册到Eureka Server上的服务ID
 spring:
   application:
@@ -12,8 +12,11 @@ eureka:
     lease-renewal-interval-in-seconds: 10
     #心跳超时时间30s，默认90s。从client端最后一次发出心跳后，达到这个时间没有再次发出心跳，表示服务不可用，将它的实例从注册中心移除
     lease-expiration-duration-in-seconds: 30
+    instance-id: cloud-eureka-client-consumer-0
 
   #Eureka Server默认地址：注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
   client:
+    register-with-eureka: true #注册到Eureka的注册中心
+    fetch-registry: true #获取注册实例列表
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:21111/eureka/,http://${eureka.instance.hostname}:21121/eureka/,http://${eureka.instance.hostname}:21131/eureka/
+      defaultZone: http://${eureka.instance.hostname}:22911/eureka/ #,http://${eureka.instance.hostname}:22912/eureka/,http://${eureka.instance.hostname}:22913/eureka/

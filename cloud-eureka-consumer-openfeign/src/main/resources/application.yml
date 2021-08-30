@@ -1,11 +1,9 @@
-#服务端口
 server:
-  port: 32911
-  #服务名称
+  port: 42912
+  #注册到Eureka Server上的服务ID
 spring:
   application:
-    #  多个provider 名称设为一样, 端口不一样
-    name: cloud-eureka-provider
+    name: cloud-eureka-client-feign
   #服务地址
 eureka:
   instance:
@@ -15,7 +13,7 @@ eureka:
     #心跳超时时间30s，默认90s。从client端最后一次发出心跳后，达到这个时间没有再次发出心跳，表示服务不可用，将它的实例从注册中心移除
     lease-expiration-duration-in-seconds: 30
 
-  #注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
+  #Eureka Server默认地址：注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
   client:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:22911/eureka/ #,http://${eureka.instance.hostname}:22912/eureka/,http://${eureka.instance.hostname}:22913/eureka/

@@ -17,7 +17,7 @@ public class RestTemplateConfig
     }
 
     @Bean
-    public RestTemplate baseSampleRestTemplate()
+    public RestTemplate commonRestTemplate()
     {
         // 构造函数内部维护了 各自解析转换器
         return new RestTemplate();

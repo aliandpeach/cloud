@@ -11,8 +11,10 @@
 
     <modules>
         <module>cloud-eureka-consumer</module>
-        <module>cloud-eureka-consumer-feign</module>
+        <module>cloud-eureka-consumer-openfeign</module>
+        <module>cloud-eureka-consumer-ribbon</module>
         <module>cloud-eureka-provider</module>
+        <module>cloud-eureka-provider01</module>
         <module>cloud-eureka-server</module>
         <module>cloud-eureka-server-01</module>
         <module>cloud-eureka-server-02</module>

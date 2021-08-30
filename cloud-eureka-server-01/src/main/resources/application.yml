@@ -1,5 +1,5 @@
 server:
-  port: 21121 #指定运行端口
+  port: 22912 #指定运行端口
 spring:
   application:
     name: cloud-eureka-server-01 #指定服务名称
@@ -13,7 +13,7 @@ eureka:
     #服务注册中心的配置内容，指定服务注册中心位置
     #注册中心路径，如果有多个eureka server，在这里需要配置其他eureka server的地址，用","进行区分，如"http://address:8888/eureka,http://address:8887/eureka"
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/,http://${eureka.instance.hostname}:21121/eureka/,http://${eureka.instance.hostname}:21131/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/,http://${eureka.instance.hostname}:22912/eureka/,http://${eureka.instance.hostname}:22913/eureka/
   server:
     enable-self-preservation: true
     #设置保护机制的阈值，默认是0.85。

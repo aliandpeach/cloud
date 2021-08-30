@@ -9,14 +9,16 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloud-eureka-consumer</artifactId>
-
-    <name>cloud-eureka-consumer</name>
+    <artifactId>cloud-eureka-consumer-openfeign</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <dependency>
@@ -32,5 +34,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
