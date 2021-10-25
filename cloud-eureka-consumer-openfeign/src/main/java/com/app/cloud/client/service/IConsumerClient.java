@@ -18,4 +18,7 @@ public interface IConsumerClient
 {
     @RequestMapping(method = RequestMethod.GET, value = "/hello")
     String hello(@RequestParam(value = "name") String name);
+//    @RequestLine("GET /hello?name=${name}")
+//    @Headers({"Content-Type: application/json", "Accept: application/json"})
+//    String hello(@Param(value = "name") String name);
 }

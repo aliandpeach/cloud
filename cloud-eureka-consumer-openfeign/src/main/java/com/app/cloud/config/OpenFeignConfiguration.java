@@ -1,12 +1,15 @@
 package com.app.cloud.config;
 
 import feign.Contract;
-import feign.auth.BasicAuthRequestInterceptor;
+import org.springframework.cloud.openfeign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * 自定义配置 OpenFeign
+ *
+ * 使用 new feign.Contract.Default() 配合 @RequestLine @Param
+ * 使用 new SpringMvcContract() 配合 @RequestMapping @RequestParam
  *
  * @author yangk
  * @version 1.0
@@ -15,15 +18,22 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenFeignConfiguration
 {
-    @Bean
-    public Contract feignContract()
-    {
-        return new feign.Contract.Default();
-    }
+//    @Bean
+//    public Contract feignContract()
+//    {
+//        return new feign.Contract.Default();
+//    }
 
     @Bean
-    public BasicAuthRequestInterceptor basicAuthRequestInterceptor()
+    public Contract feignConfiguration()
     {
-        return new BasicAuthRequestInterceptor("user", "password");
+        return new SpringMvcContract();
     }
+
+//    @Bean
+//    public BasicAuthRequestInterceptor basicAuthRequestInterceptor()
+//    {
+    // 服务端认证
+//        return new BasicAuthRequestInterceptor("user", "password");
+//    }
 }

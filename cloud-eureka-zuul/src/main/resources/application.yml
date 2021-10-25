@@ -1,0 +1,72 @@
+server:
+  port: 8081 #指定运行端口
+spring:
+  application:
+    name: cloud-eureka-zuul #指定服务名称
+eureka:
+  instance:
+    hostname: 192.190.10.122
+    #心跳间隔10s，默认30s。每一个服务配置后，心跳间隔和心跳超时时间会被保存在server端，不同服务的心跳频率可能不同，server端会根据保存的配置来分别探活
+    lease-renewal-interval-in-seconds: 10
+    #心跳超时时间30s，默认90s。从client端最后一次发出心跳后，达到这个时间没有再次发出心跳，表示服务不可用，将它的实例从注册中心移除
+    lease-expiration-duration-in-seconds: 30
+
+  #Eureka Server默认地址：注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
+  client:
+    register-with-eureka: true #注册到Eureka的注册中心
+    fetch-registry: true #获取注册实例列表
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:22911/eureka/ #,http://${eureka.instance.hostname}:22912/eureka/,http://${eureka.instance.hostname}:22913/eureka/
+zuul:
+  host:
+    connect-timeout-millis: 3000
+    socket-timeout-millis: 3000
+  strip-prefix: true
+  retryable: true
+  routes:
+
+#    api-a:
+#      path: /client/ribbon/**
+#      url: http://${eureka.instance.hostname}:42911/client/ribbon/
+#    api-b:
+#      path: /client/feign/**
+#      url: http://${eureka.instance.hostname}:42911/client/feign/
+#    api-c:
+#      path: /client/balanced/**
+#      url: http://${eureka.instance.hostname}:42911/client/balanced/
+#    api-d:
+#      path: /client/common/**
+#      url: http://${eureka.instance.hostname}:42911/client/common/
+
+    api-a:
+      path: /client/ribbon/**
+      serviceId: cloud-eureka-client-consumer-ribbon
+      stripPrefix: false # 重要, 否则404
+    api-b:
+      path: /client/feign/**
+      serviceId: cloud-eureka-client-consumer-feign
+      stripPrefix: false
+    api-c:
+      path: /client/balanced/**
+      serviceId: cloud-eureka-client-consumer
+      stripPrefix: false
+    api-d:
+      path: /client/common/**
+      serviceId: cloud-eureka-client-consumer
+      stripPrefix: false
+
+hystrix:
+  command:
+    cloud-eureka-client-consumer:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+cloud-eureka-client-consumer:
+  ribbon:
+    NIWSServerListClassName: com.netflix.loadbalancer.ConfigurationBasedServerList
+    listOfServers: http://192.190.10.122:42911
+    ConnectTimeout: 1000
+    ReadTimeout: 3000
+    MaxTotalHttpConnections: 500
+    MaxConnectionsPerHost: 100

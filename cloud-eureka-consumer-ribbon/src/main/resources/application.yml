@@ -3,7 +3,7 @@ server:
   #注册到Eureka Server上的服务ID
 spring:
   application:
-    name: cloud-eureka-client-ribbon
+    name: cloud-eureka-client-consumer-ribbon
   #服务地址
 eureka:
   instance:

@@ -25,6 +25,7 @@ public class ConsumerCommonController
     @RequestMapping("/hi")
     public String hello(String name)
     {
+        // 未集成ribbon, 默认使用 BlockingLoadBalancerClient
         ServiceInstance serviceInstance = loadBalancerClient.choose("cloud-eureka-provider");
         String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/hello?name=" + name;
         System.out.println(url);

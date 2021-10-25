@@ -14,6 +14,7 @@ eureka:
     lease-renewal-interval-in-seconds: 10
     #心跳超时时间30s，默认90s。从client端最后一次发出心跳后，达到这个时间没有再次发出心跳，表示服务不可用，将它的实例从注册中心移除
     lease-expiration-duration-in-seconds: 30
+    #instance-id: cloud-eureka-provider-0  # 默认是 localhost:cloud-eureka-provider:32911
 
   #注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
   client:

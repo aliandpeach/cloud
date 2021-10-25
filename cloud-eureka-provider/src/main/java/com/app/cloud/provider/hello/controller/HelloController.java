@@ -21,6 +21,6 @@ public class HelloController
     public String hello(@RequestParam("name") String name)
     {
         List<ServiceInstance> serviceInstanceList = discoveryClient.getInstances("cloud-eureka-provider");
-        return name + ", Welcome to service provider";
+        return name + ", Welcome to service provider 0";
     }
 }

@@ -3,7 +3,7 @@ server:
   #注册到Eureka Server上的服务ID
 spring:
   application:
-    name: cloud-eureka-client-feign
+    name: cloud-eureka-client-consumer-feign
   #服务地址
 eureka:
   instance:
@@ -12,6 +12,7 @@ eureka:
     lease-renewal-interval-in-seconds: 10
     #心跳超时时间30s，默认90s。从client端最后一次发出心跳后，达到这个时间没有再次发出心跳，表示服务不可用，将它的实例从注册中心移除
     lease-expiration-duration-in-seconds: 30
+    #instance-id: cloud-eureka-client-consumer-01
 
   #Eureka Server默认地址：注册中心路径，表示我们向这个注册中心注册服务，如果向多个注册中心注册，用“，”进行分隔
   client:
